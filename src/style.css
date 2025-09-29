@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -12,7 +15,132 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --verdeTexto: #10782C;
+  --rojoTexto: #B51919
 }
+
+
+
+body {
+  margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  #mesa {
+    min-width: 30vw;
+  }
+}
+
+#mesa {
+  display: grid;
+  background-color: #0b6623;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr 1fr;
+  grid-template-areas: 
+    "zona-cartas"
+    "mazo";
+  min-width: 65vw;
+  min-height: 50vh;
+  padding-top: 16vh;
+  border: 0.7vw solid #4b2e1e; /* Borde tipo madera */
+  border-radius: 70% / 20%;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6);
+  
+}
+
+#zona-cartas {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: calc(2 * 20vw);
+  align-content: space-evenly;
+  padding-left: 2rem;
+  border: 0.4vw dashed rgba(255, 255, 255, 0.3);
+  border-radius: 1vw;
+  grid-area: zona-cartas;
+  width: 80%;
+  height: 100%;
+  justify-self: center;
+
+  div.carta {
+    width: 13vw;
+    height: 17vw;
+    display: flex;
+    align-items: center;
+    margin: 1vh 0.3vw;
+    
+
+    img {
+      width: 12vw;
+      border-radius: 1vw;
+    }
+  }
+
+
+}
+#mazo {
+  grid-area: mazo;
+  margin-bottom: 1vw;
+  perspective: 1000px;
+  img#img-mazo {
+    
+    width: 13vw;
+    height: auto;
+    margin: 1vh 0;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    }
+    .rotarCarta {
+      transform: rotateY(90deg);
+  }
+}
+
+#marcador {
+  width: fit-content;
+  padding: 0 3vw;
+  background-color:  rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6);
+  border-radius: 20%;
+  font-size: 7vw;
+  font-weight: bold;
+  letter-spacing: 0.3vw;
+  pointer-events: none;
+  align-content: center;
+  
+}
+
+#avisos {
+  font-weight: bold;
+  font-size: 2em;
+  padding: 1vh;
+  margin: 2vh 0;
+}
+  .win {
+    color: var(--verdeTexto);
+    box-shadow: 1px 1px 5px var(--verdeTexto);
+    transform: translateY(-5px);
+    border-radius: 10px;
+  }
+  .bajo {
+    color: #c5562e;
+    box-shadow: 1px 1px 5px #c5562e;
+    transform: translateY(-5px);
+    border-radius: 10px;
+  }
+  .gameOver {
+    color: var(--rojoTexto);
+    box-shadow: 1px 1px 5px var(--rojoTexto);
+    transform: translateY(-5px);
+    border-radius: 10px;
+  }
+
+#botones {
+  margin-top: 2vh;
+}
+
+
+
+
 
 a {
   font-weight: 500;
@@ -37,7 +165,7 @@ h1 {
 }
 
 #app {
-  max-width: 1280px;
+  max-width: fit-content;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;

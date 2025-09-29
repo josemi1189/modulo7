@@ -1,3 +1,4 @@
 import "./style.css";
+import { botones, nuevaPartida } from "./UI/ui";
 
-console.log("Hello Typescript!");
+document.addEventListener("DOMContentLoaded", () => { nuevaPartida(); botones(); });
