@@ -1,5 +1,5 @@
-import { variable, urlImages, baraja, palos, Imagen } from "../models/model";
-import {generaNumAleatorio, gestionCartasObtenidas, obtenerPuntosCarta, sumarPuntuacion } from "../controllers/motor";
+import { variable, urlImages, baraja, palos, Imagen } from "../models/modelo";
+import {generaNumAleatorio, gestionarEstadoPartida, gestionCartasObtenidas, obtenerPuntosCarta, sumarPuntuacion } from "../controllers/motor";
 
 //Inicialización de variables de elemento
 const btnReparteCarta= document.getElementById("dameCarta");
@@ -105,7 +105,8 @@ export const dameCarta = (opcion:number):void => {
          let puntos = obtenerPuntosCarta(numeroCartaObtenida);
          variable.puntuacion = sumarPuntuacion(puntos);
          (divMarcador instanceof HTMLDivElement) && cambiaContenidoDiv(divMarcador, variable.puntuacion.toString());    // Actualiza puntuación en marcador
-         (variable.puntuacion > 7.5) && handlePlantarse();   // Deshabilita botones y muestra mensaje de aviso
+         gestionarEstadoPartida();
+         (variable.estadoPartida === "perder" || variable.estadoPartida === "ganar") && handlePlantarse();   // Deshabilita botones y muestra mensaje de aviso
       }else{
          pregunta(palos[posicionPaloElegido], numeroCartaObtenida);
       }

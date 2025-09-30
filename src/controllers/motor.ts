@@ -1,4 +1,4 @@
-import { variable } from "../models/model";
+import { variable } from "../models/modelo";
 
 /**
  * Genera un número aleatorio desde 0 hasta el límite recibido por parámetro.
@@ -22,6 +22,18 @@ export const sumarPuntuacion = (puntosCarta:number):number => {
    return variable.puntuacion + puntosCarta;
 }
 
+/**
+ * Modifica estadoPartida si obtiene 7.5 para ganar o lo supera para perder.
+ * Por defecto es "seguir_jugando"
+ */
+export const gestionarEstadoPartida = ():string => {
+   if (variable.puntuacion === 7.5) {
+      variable.estadoPartida = "ganar";
+   }else if (variable.puntuacion > 7.5) {
+      variable.estadoPartida = "perder";
+   }
+   return variable.estadoPartida;
+}
 
 /** Recibe array de cartas del palo elegido y posición del palo.
  *  Obtiene posición de la carta de forma aleatoria y lo elimina de su array.
